@@ -17,7 +17,7 @@
             background: #f0f0f0;
             display: grid;
             place-content: center;
-            height: 100vh;
+            height: 100dvh;
         }
 
         main {
@@ -108,7 +108,13 @@
                 background: #007bff;
                 color: #fff;
                 cursor: pointer;
+
+                &[disabled] {
+                    background: #ccc;
+                    pointer-events: none;
+                }
             }
+
         }
     </style>
 
@@ -131,6 +137,11 @@
             }
 
             addMessage(messageText, 'user');
+            $button.setAttribute('disabled', true);
+            setTimeout(() => {
+                addMessage('Respuesta del ChatGTP', 'bot');
+                $button.removeAttribute('disabled');
+            }, 1000)
         })
 
 
